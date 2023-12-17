@@ -1,0 +1,876 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Professor Layton Puzzle - Wolves and Chicks</title>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/ntnuerc.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+        <script src="https://daybrush.com/scenejs/release/latest/dist/scene.min.js"></script>
+		
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <script src="js/ntnu.js"></script>
+    </head>
+    <body>
+        <div class="reveal">
+        <div class="slides">
+            
+<section id="slide_00002_frag_00001" data-state="slide_00002_frag_00001">
+
+
+<!-- Header -->
+  
+
+<!-- Background -->
+
+
+<!-- Slide -->
+<div class="jb-slide">
+
+<div class="jb-output-code jb-render">
+
+<!-- start embedded style -->
+
+<!-- end embedded style -->
+<div class="jb-output jb-render">
+
+<h1>Professor Layton Puzzle - Wolves and Chicks</h1>
+
+<div>
+
+<p>
+      Jacky Baltes<br>
+      National Taiwan Normal University<br>
+      Taipei, Taiwan<br>
+      <a href="mailto:jacky.baltes@ntnu.edu.tw">jacky.baltes@ntnu.edu.tw</a><br>
+
+      17 December 2023
+</p>
+
+</div>
+
+</div><!-- end of jb-output jb-render -->
+</div><!-- end of jb-output-code jb-render -->
+
+
+</div>
+<!-- Footer -->
+
+<div class="jb-footer-left plain">
+    <span id="id-4d1e24f0-7ff2-48e6-ae52-7a6e6097cee1" ><span id="id-4d1e24f0-7ff2-48e6-ae52-7a6e6097cee1"><img id="img-id-4d1e24f0-7ff2-48e6-ae52-7a6e6097cee1"     src="assets/images/logo.png"/></span>
+</span>
+
+</div>
+<div class="jb-footer-right plain">
+    <span id="id-97deabab-7d74-4096-b0c6-f34025cb1bde" ><span id="id-97deabab-7d74-4096-b0c6-f34025cb1bde"><img id="img-id-97deabab-7d74-4096-b0c6-f34025cb1bde" width="162" height="138"   src="assets/images/robbi.png"/></span>
+</span>
+
+</div>
+
+<aside class="notes">
+
+</aside>
+
+
+
+</section>
+<section id="slide_00003_frag_00001" data-state="slide_00003_frag_00001">
+
+
+<!-- Header -->
+  
+
+<!-- Background -->
+
+
+<!-- Slide -->
+<div class="jb-slide">
+
+<div class="jb-output-code jb-render">
+
+<!-- start embedded style -->
+
+<!-- end embedded style -->
+<div class="jb-output jb-render">
+<div class="document">
+<div class="jb-text small docutils container">
+<blockquote>
+<p>Implement a solution to the <a class="reference external" href="https://layton.fandom.com/wiki/Puzzle:Wolves_and_Chicks">Wolves and Chicks Puzzle</a> from the game <a class="reference external" href="https://en.wikipedia.org/wiki/Professor_Layton_and_the_Curious_Village">Professor
+Layton and the Curious Village</a>.</p>
+<blockquote>
+<p>Get the three wolves and three chicks seen below to the other side of the river while
+obeying the following conditions.</p>
+<p>No more than two animals can ride the raft at the same time.</p>
+<p>There must be at least one animal on the raft in order for it to move.</p>
+<p>If more wolves than chicks stay on either side of the river, the wolves
+will eat the chicks, and you'll have to start over.</p>
+<p>You can move the raft as many times as you like, but this feat can be accomplished
+in as few as 11 moves.</p>
+</blockquote>
+</blockquote>
+</div>
+</div>
+
+</div><!-- end of jb-output jb-render -->
+</div><!-- end of jb-output-code jb-render -->
+
+
+</div>
+<!-- Footer -->
+
+<div class="jb-footer-left plain">
+    <span id="id-c2425699-4373-40b9-8bc0-dd4296e4124b" ><span id="id-c2425699-4373-40b9-8bc0-dd4296e4124b"><img id="img-id-c2425699-4373-40b9-8bc0-dd4296e4124b"     src="assets/images/logo.png"/></span>
+</span>
+
+</div>
+<div class="jb-footer-right plain">
+    <span id="id-0e994ff1-504d-4d05-b469-8226d769fcb7" ><span id="id-0e994ff1-504d-4d05-b469-8226d769fcb7"><img id="img-id-0e994ff1-504d-4d05-b469-8226d769fcb7" width="162" height="138"   src="assets/images/robbi.png"/></span>
+</span>
+
+</div>
+
+<aside class="notes">
+
+</aside>
+
+
+
+</section>
+<section id="slide_00004_frag_00001" data-state="slide_00004_frag_00001">
+
+
+<!-- Header -->
+  
+
+<!-- Background -->
+
+
+<!-- Slide -->
+<div class="jb-slide">
+<div class="jb-input jb-render jb-code" style="text-align:center">
+
+<!-- start embedded style -->
+
+<!-- end embedded style -->
+<div class="jb-input-code jb-render">
+<div style="small"><!-- start of style="small" -->
+<div class="highlight" style="background: #f8f8f8; color:#101010;display=inline-block;"><pre style="line-height: 125%;"><span></span>initial <span style="color: #666666">=</span> [ <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #666666">3</span>, <span style="color: #666666">3</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>]
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">isValid</span>( state ):
+    raftIsLeft, wolvesLeft, chicksLeft, wolvesRight, chicksRight <span style="color: #666666">=</span> state
+    <span style="color: #008000; font-weight: bold">if</span> ((chicksLeft <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>) <span style="color: #AA22FF; font-weight: bold">and</span> (wolvesLeft <span style="color: #666666">&gt;</span> chicksLeft)) <span style="color: #AA22FF; font-weight: bold">or</span> ( (chicksRight <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>) <span style="color: #AA22FF; font-weight: bold">and</span> (wolvesRight <span style="color: #666666">&gt;</span> chicksRight)):
+        result <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">False</span>
+    <span style="color: #008000; font-weight: bold">else</span>:
+        result <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">True</span>
+    <span style="color: #008000; font-weight: bold">return</span> result
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">chickenWolvesSuccessors</span>( state, hist <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">None</span> ):
+    raftIsLeft, wolvesLeft, chicksLeft, wolvesRight, chicksRight <span style="color: #666666">=</span> state
+    children <span style="color: #666666">=</span> []
+    <span style="color: #008000; font-weight: bold">if</span> raftIsLeft:
+      <span style="color: #3D7B7B; font-style: italic"># Move 1 or 2 Wolf</span>
+      <span style="color: #008000; font-weight: bold">for</span> n <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">1</span>,<span style="color: #666666">3</span>):
+        <span style="color: #008000; font-weight: bold">if</span> wolvesLeft <span style="color: #666666">&gt;=</span> n:
+            ns <span style="color: #666666">=</span> [ <span style="color: #008000; font-weight: bold">False</span>, wolvesLeft <span style="color: #666666">-</span> n, chicksLeft, wolvesRight <span style="color: #666666">+</span> n, chicksRight ]
+            <span style="color: #008000; font-weight: bold">if</span> isValid( ns ):
+                children<span style="color: #666666">.</span>append( ns )
+      <span style="color: #3D7B7B; font-style: italic"># Move 1 or 2 chickens</span>
+      <span style="color: #008000; font-weight: bold">for</span> n <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">1</span>,<span style="color: #666666">3</span>):
+        <span style="color: #008000; font-weight: bold">if</span> chicksLeft <span style="color: #666666">&gt;=</span> n:
+            ns <span style="color: #666666">=</span> [ <span style="color: #008000; font-weight: bold">False</span>, wolvesLeft, chicksLeft <span style="color: #666666">-</span> n, wolvesRight, chicksRight <span style="color: #666666">+</span> n ]
+            <span style="color: #008000; font-weight: bold">if</span> isValid( ns ):
+                children<span style="color: #666666">.</span>append( ns )
+      <span style="color: #3D7B7B; font-style: italic"># Move 1 wolf and 1 chicken</span>
+      <span style="color: #008000; font-weight: bold">if</span> chicksLeft <span style="color: #666666">&gt;=</span> <span style="color: #666666">1</span> <span style="color: #AA22FF; font-weight: bold">and</span> wolvesLeft <span style="color: #666666">&gt;=</span> <span style="color: #666666">1</span>:
+          ns <span style="color: #666666">=</span> [ <span style="color: #008000; font-weight: bold">False</span>, wolvesLeft <span style="color: #666666">-</span> <span style="color: #666666">1</span>, chicksLeft <span style="color: #666666">-</span> <span style="color: #666666">1</span>, wolvesRight <span style="color: #666666">+</span> <span style="color: #666666">1</span>, chicksRight <span style="color: #666666">+</span> <span style="color: #666666">1</span> ]
+          <span style="color: #008000; font-weight: bold">if</span> isValid( ns ):
+              children<span style="color: #666666">.</span>append( ns )
+    <span style="color: #008000; font-weight: bold">else</span>:
+      <span style="color: #3D7B7B; font-style: italic"># Move 1 or 2 Wolf</span>
+      <span style="color: #008000; font-weight: bold">for</span> n <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">1</span>,<span style="color: #666666">3</span>):
+        <span style="color: #008000; font-weight: bold">if</span> wolvesRight <span style="color: #666666">&gt;=</span> n:
+            ns <span style="color: #666666">=</span> [ <span style="color: #008000; font-weight: bold">True</span>, wolvesLeft <span style="color: #666666">+</span> n, chicksLeft, wolvesRight <span style="color: #666666">-</span> n, chicksRight ]
+            <span style="color: #008000; font-weight: bold">if</span> isValid( ns ):
+                children<span style="color: #666666">.</span>append( ns )
+      <span style="color: #3D7B7B; font-style: italic"># Move 1 or 2 chickens</span>
+      <span style="color: #008000; font-weight: bold">for</span> n <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">1</span>,<span style="color: #666666">3</span>):
+        <span style="color: #008000; font-weight: bold">if</span> chicksRight <span style="color: #666666">&gt;=</span> n:
+            ns <span style="color: #666666">=</span> [ <span style="color: #008000; font-weight: bold">True</span>, wolvesLeft, chicksLeft <span style="color: #666666">+</span> n, wolvesRight, chicksRight <span style="color: #666666">-</span> n ]
+            <span style="color: #008000; font-weight: bold">if</span> isValid( ns ):
+                children<span style="color: #666666">.</span>append( ns )
+      <span style="color: #3D7B7B; font-style: italic"># Move 1 wolf and 1 chicken</span>
+      <span style="color: #008000; font-weight: bold">if</span> chicksRight <span style="color: #666666">&gt;=</span> <span style="color: #666666">1</span> <span style="color: #AA22FF; font-weight: bold">and</span> wolvesRight <span style="color: #666666">&gt;=</span> <span style="color: #666666">1</span>:
+          ns <span style="color: #666666">=</span> [ <span style="color: #008000; font-weight: bold">True</span>, wolvesLeft <span style="color: #666666">+</span> <span style="color: #666666">1</span>, chicksLeft <span style="color: #666666">+</span> <span style="color: #666666">1</span>, wolvesRight <span style="color: #666666">-</span> <span style="color: #666666">1</span>, chicksRight <span style="color: #666666">-</span> <span style="color: #666666">1</span> ]
+          <span style="color: #008000; font-weight: bold">if</span> isValid( ns ):
+              children<span style="color: #666666">.</span>append( ns )
+    <span style="color: #008000; font-weight: bold">return</span> children
+
+<span style="color: #008000">print</span>(initial, isValid(initial) )
+<span style="color: #008000">print</span>([<span style="color: #008000; font-weight: bold">False</span>, <span style="color: #666666">1</span>, <span style="color: #666666">2</span>, <span style="color: #666666">2</span>, <span style="color: #666666">1</span>], isValid([<span style="color: #008000; font-weight: bold">False</span>, <span style="color: #666666">1</span>, <span style="color: #666666">2</span>, <span style="color: #666666">2</span>, <span style="color: #666666">1</span>]) )
+<span style="color: #008000">print</span>([<span style="color: #008000; font-weight: bold">False</span>, <span style="color: #666666">2</span>, <span style="color: #666666">3</span>, <span style="color: #666666">2</span>, <span style="color: #666666">0</span>], isValid([<span style="color: #008000; font-weight: bold">False</span>, <span style="color: #666666">1</span>, <span style="color: #666666">3</span>, <span style="color: #666666">2</span>, <span style="color: #666666">0</span>]) )
+
+<span style="color: #008000">print</span>( chickenWolvesSuccessors( initial ) )
+</pre></div>
+
+</div><!-- end of style="small" -->
+</div><!-- end of jb-input-code jb-render -->
+
+</div>
+<div class="jb-print jb-render">
+<div style="small"><!-- start of style="small" -->
+<div class="jb-output jb-render code" style="text-align:center">
+<div class="jb-stdout code" style="display:inline-block; width:90%">
+<pre style="small">
+[True, 3, 3, 0, 0] True
+[False, 1, 2, 2, 1] False
+[False, 2, 3, 2, 0] True
+[[False, 2, 3, 1, 0], [False, 1, 3, 2, 0], [False, 2, 2, 1, 1]]
+</pre>
+</div>
+</div>
+
+</div><!-- end of style="small" -->
+</div><!-- end of jb-print jb-render -->
+
+</div>
+<!-- Footer -->
+
+<div class="jb-footer-left plain">
+    <span id="id-ce3927f0-efae-474f-8dc6-a977a3b08037" ><span id="id-ce3927f0-efae-474f-8dc6-a977a3b08037"><img id="img-id-ce3927f0-efae-474f-8dc6-a977a3b08037"     src="assets/images/logo.png"/></span>
+</span>
+
+</div>
+<div class="jb-footer-right plain">
+    <span id="id-d2e1eb47-e61d-4b18-92ec-a22dd8571b4d" ><span id="id-d2e1eb47-e61d-4b18-92ec-a22dd8571b4d"><img id="img-id-d2e1eb47-e61d-4b18-92ec-a22dd8571b4d" width="162" height="138"   src="assets/images/robbi.png"/></span>
+</span>
+
+</div>
+
+<aside class="notes">
+
+</aside>
+
+
+
+</section>
+<section id="slide_00005_frag_00001" data-state="slide_00005_frag_00001">
+
+
+<!-- Header -->
+  
+
+<!-- Background -->
+
+
+<!-- Slide -->
+<div class="jb-slide">
+<div class="jb-input jb-render jb-code" style="text-align:center">
+
+<!-- start embedded style -->
+
+<!-- end embedded style -->
+<div class="jb-input-code jb-render">
+<div class="highlight" style="background: #f8f8f8; color:#101010;display=inline-block;"><pre style="line-height: 125%;"><span></span>ts <span style="color: #666666">=</span> [<span style="color: #008000; font-weight: bold">False</span>, <span style="color: #666666">2</span>, <span style="color: #666666">3</span>, <span style="color: #666666">1</span>, <span style="color: #666666">0</span>]
+
+chickenWolvesSuccessors(ts)
+</pre></div>
+
+</div><!-- end of jb-input-code jb-render -->
+
+</div>
+
+</div>
+<!-- Footer -->
+
+<div class="jb-footer-left plain">
+    <span id="id-7cac6af4-e0df-4892-ae7c-0ccbbf9aeb53" ><span id="id-7cac6af4-e0df-4892-ae7c-0ccbbf9aeb53"><img id="img-id-7cac6af4-e0df-4892-ae7c-0ccbbf9aeb53"     src="assets/images/logo.png"/></span>
+</span>
+
+</div>
+<div class="jb-footer-right plain">
+    <span id="id-c92484ac-0f37-4737-b769-cbc77c76624e" ><span id="id-c92484ac-0f37-4737-b769-cbc77c76624e"><img id="img-id-c92484ac-0f37-4737-b769-cbc77c76624e" width="162" height="138"   src="assets/images/robbi.png"/></span>
+</span>
+
+</div>
+
+<aside class="notes">
+
+</aside>
+
+
+
+</section>
+<section id="slide_00006_frag_00001" data-state="slide_00006_frag_00001">
+
+
+<!-- Header -->
+  
+
+<!-- Background -->
+
+
+<!-- Slide -->
+<div class="jb-slide">
+
+<div class="jb-output-code jb-render">
+
+<!-- start embedded style -->
+
+<!-- end embedded style -->
+<div class="jb-output jb-render">
+<div class="document" id="implementation-of-depth-first-search">
+<h1 class="title">Implementation of Depth First Search</h1>
+<div class="jb-text docutils container">
+<p>We will now implement the depth first search algorithm to solve the puzzle.</p>
+<p>I will use an implementation using a queue instead of a recursive solution for
+reasons that will become apparent later</p>
+</div>
+</div>
+
+</div><!-- end of jb-output jb-render -->
+</div><!-- end of jb-output-code jb-render -->
+
+
+</div>
+<!-- Footer -->
+
+<div class="jb-footer-left plain">
+    <span id="id-0e0ecdb2-ce2a-4610-bcb2-8c65c38e6d85" ><span id="id-0e0ecdb2-ce2a-4610-bcb2-8c65c38e6d85"><img id="img-id-0e0ecdb2-ce2a-4610-bcb2-8c65c38e6d85"     src="assets/images/logo.png"/></span>
+</span>
+
+</div>
+<div class="jb-footer-right plain">
+    <span id="id-7faa7e71-d345-42c4-8139-aa071e97d187" ><span id="id-7faa7e71-d345-42c4-8139-aa071e97d187"><img id="img-id-7faa7e71-d345-42c4-8139-aa071e97d187" width="162" height="138"   src="assets/images/robbi.png"/></span>
+</span>
+
+</div>
+
+<aside class="notes">
+
+</aside>
+
+
+
+</section>
+<section id="slide_00007_frag_00001" data-state="slide_00007_frag_00001">
+
+
+<!-- Header -->
+  
+
+<!-- Background -->
+
+
+<!-- Slide -->
+<div class="jb-slide">
+<div class="jb-input jb-render jb-code" style="text-align:center">
+
+<!-- start embedded style -->
+
+<!-- end embedded style -->
+<div class="jb-input-code jb-render">
+<div style="small"><!-- start of style="small" -->
+<div class="highlight" style="background: #f8f8f8; color:#101010;display=inline-block;"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">search</span>( initial, successorFunc, limit <span style="color: #666666">=</span> <span style="color: #666666">1000</span> ):
+    queue <span style="color: #666666">=</span> [ ( initial, [initial] ) ]
+    numNodes <span style="color: #666666">=</span> <span style="color: #666666">1</span>
+    sol <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">None</span>
+    <span style="color: #008000; font-weight: bold">while</span>( <span style="color: #008000">len</span>( queue ) <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span> ):
+        <span style="color: #3D7B7B; font-style: italic"># current, chist = queue[-1]</span>
+        <span style="color: #3D7B7B; font-style: italic"># queue = queue[0:-1]</span>
+        current, chist <span style="color: #666666">=</span> queue<span style="color: #666666">.</span>pop()
+        <span style="color: #008000; font-weight: bold">if</span> (current[<span style="color: #666666">1</span>] <span style="color: #666666">==</span> <span style="color: #666666">0</span>) <span style="color: #AA22FF; font-weight: bold">and</span> (current[<span style="color: #666666">2</span>] <span style="color: #666666">==</span> <span style="color: #666666">0</span>):
+            sol <span style="color: #666666">=</span> (numNodes, chist)
+            <span style="color: #008000; font-weight: bold">break</span>
+        <span style="color: #3D7B7B; font-style: italic">#print(&quot;current state&quot;, current, chist )</span>
+        <span style="color: #3D7B7B; font-style: italic">#print(&quot;queue&quot;, queue)</span>
+        children <span style="color: #666666">=</span> successorFunc( current )
+        <span style="color: #3D7B7B; font-style: italic">#print(&quot;children&quot;, children)</span>
+        <span style="color: #008000; font-weight: bold">for</span> c <span style="color: #AA22FF; font-weight: bold">in</span> children:
+            <span style="color: #008000; font-weight: bold">if</span> c <span style="color: #AA22FF; font-weight: bold">not</span> <span style="color: #AA22FF; font-weight: bold">in</span> chist:
+                queue<span style="color: #666666">.</span>append((c, chist <span style="color: #666666">+</span> [c] ))
+                numNodes <span style="color: #666666">=</span> numNodes <span style="color: #666666">+</span> <span style="color: #666666">1</span>
+                <span style="color: #008000; font-weight: bold">if</span> ( numNodes <span style="color: #666666">&gt;</span> limit ):
+                    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">None</span>
+    <span style="color: #008000; font-weight: bold">return</span> sol
+
+sol <span style="color: #666666">=</span> search( initial, chickenWolvesSuccessors, <span style="color: #666666">20</span> )
+<span style="color: #008000; font-weight: bold">if</span> sol:
+    nNodes, trace <span style="color: #666666">=</span> sol
+    <span style="color: #008000">print</span>(<span style="color: #BA2121">&#39;Solution&#39;</span>, nNodes, <span style="color: #BA2121">&#39;length&#39;</span>, <span style="color: #008000">len</span>(sol), sol)
+</pre></div>
+
+</div><!-- end of style="small" -->
+</div><!-- end of jb-input-code jb-render -->
+
+</div>
+<div class="jb-print jb-render">
+<div style="small"><!-- start of style="small" -->
+<div class="jb-output jb-render code" style="text-align:center">
+<div class="jb-stdout code" style="display:inline-block; width:90%">
+<pre style="small">
+Solution 16 length 2 (16, [[True, 3, 3, 0, 0], [False, 2, 2, 1, 1], [True, 2, 3, 1, 0], [False, 0, 3, 3, 0], [True, 1, 3, 2, 0], [False, 1, 1, 2, 2], [True, 2, 2, 1, 1], [False, 2, 0, 1, 3], [True, 3, 0, 0, 3], [False, 1, 0, 2, 3], [True, 1, 1, 2, 2], [False, 0, 0, 3, 3]])
+</pre>
+</div>
+</div>
+
+</div><!-- end of style="small" -->
+</div><!-- end of jb-print jb-render -->
+
+</div>
+<!-- Footer -->
+
+<div class="jb-footer-left plain">
+    <span id="id-86fca95a-5c04-4f79-aad7-5d4f92cdf15a" ><span id="id-86fca95a-5c04-4f79-aad7-5d4f92cdf15a"><img id="img-id-86fca95a-5c04-4f79-aad7-5d4f92cdf15a"     src="assets/images/logo.png"/></span>
+</span>
+
+</div>
+<div class="jb-footer-right plain">
+    <span id="id-6403981f-e5c2-4779-8599-13bf9c237044" ><span id="id-6403981f-e5c2-4779-8599-13bf9c237044"><img id="img-id-6403981f-e5c2-4779-8599-13bf9c237044" width="162" height="138"   src="assets/images/robbi.png"/></span>
+</span>
+
+</div>
+
+<aside class="notes">
+
+</aside>
+
+
+
+</section>
+<section id="slide_00008_frag_00001" data-state="slide_00008_frag_00001">
+
+
+<!-- Header -->
+  
+
+<!-- Background -->
+
+
+<!-- Slide -->
+<div class="jb-slide">
+
+<div class="jb-output-code jb-render">
+
+<!-- start embedded style -->
+
+<!-- end embedded style -->
+<div class="jb-output jb-render">
+
+<h1>Another Solution</h1>
+
+</div><!-- end of jb-output jb-render -->
+</div><!-- end of jb-output-code jb-render -->
+
+
+</div>
+<!-- Footer -->
+
+<div class="jb-footer-left plain">
+    <span id="id-5cd329fc-5836-41f2-965d-0e0005a05b58" ><span id="id-5cd329fc-5836-41f2-965d-0e0005a05b58"><img id="img-id-5cd329fc-5836-41f2-965d-0e0005a05b58"     src="assets/images/logo.png"/></span>
+</span>
+
+</div>
+<div class="jb-footer-right plain">
+    <span id="id-7fd106e2-3617-4d2a-a733-f1a44bc5514f" ><span id="id-7fd106e2-3617-4d2a-a733-f1a44bc5514f"><img id="img-id-7fd106e2-3617-4d2a-a733-f1a44bc5514f" width="162" height="138"   src="assets/images/robbi.png"/></span>
+</span>
+
+</div>
+
+<aside class="notes">
+
+</aside>
+
+
+
+</section>
+<section id="slide_00009_frag_00001" data-state="slide_00009_frag_00001">
+
+
+<!-- Header -->
+  
+
+<!-- Background -->
+
+
+<!-- Slide -->
+<div class="jb-slide">
+<div class="jb-input jb-render jb-code" style="text-align:center">
+
+<!-- start embedded style -->
+
+<!-- end embedded style -->
+<div class="jb-input-code jb-render">
+<div class="highlight" style="background: #f8f8f8; color:#101010;display=inline-block;"><pre style="line-height: 125%;"><span></span>NUM_ANIMALS <span style="color: #666666">=</span> <span style="color: #666666">3</span>
+
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">is_valid</span>(state):
+  wolves_left, chicks_left, boat_left <span style="color: #666666">=</span> state
+  wolves_right, chicks_right <span style="color: #666666">=</span> NUM_ANIMALS <span style="color: #666666">-</span> wolves_left, NUM_ANIMALS <span style="color: #666666">-</span> chicks_left
+  boat_right <span style="color: #666666">=</span> <span style="color: #AA22FF; font-weight: bold">not</span> boat_left
+
+  <span style="color: #3D7B7B; font-style: italic">#print(&quot;is_valid&quot;, wolves_left, chicks_left, boat_left, wolves_right, chicks_right, boat_right)</span>
+
+  <span style="color: #008000; font-weight: bold">if</span> ((wolves_left <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) <span style="color: #AA22FF; font-weight: bold">or</span> (wolves_left <span style="color: #666666">&gt;</span> NUM_ANIMALS)):
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">False</span>
+  <span style="color: #008000; font-weight: bold">if</span> ((chicks_left <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) <span style="color: #AA22FF; font-weight: bold">or</span> (chicks_left <span style="color: #666666">&gt;</span> NUM_ANIMALS)):
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">False</span>
+  <span style="color: #008000; font-weight: bold">if</span> ((chicks_left <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>) <span style="color: #AA22FF; font-weight: bold">and</span>
+      (wolves_left <span style="color: #666666">&gt;</span> chicks_left)) <span style="color: #AA22FF; font-weight: bold">or</span> ((chicks_right <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>) <span style="color: #AA22FF; font-weight: bold">and</span>
+                                       (wolves_right <span style="color: #666666">&gt;</span> chicks_right)):
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">False</span>
+
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">True</span>
+</pre></div>
+
+</div><!-- end of jb-input-code jb-render -->
+
+</div>
+
+</div>
+<!-- Footer -->
+
+<div class="jb-footer-left plain">
+    <span id="id-e581d8fd-ff68-496a-bbac-fd2c58928a41" ><span id="id-e581d8fd-ff68-496a-bbac-fd2c58928a41"><img id="img-id-e581d8fd-ff68-496a-bbac-fd2c58928a41"     src="assets/images/logo.png"/></span>
+</span>
+
+</div>
+<div class="jb-footer-right plain">
+    <span id="id-3f634c60-0c94-42ee-a235-79bfc473f293" ><span id="id-3f634c60-0c94-42ee-a235-79bfc473f293"><img id="img-id-3f634c60-0c94-42ee-a235-79bfc473f293" width="162" height="138"   src="assets/images/robbi.png"/></span>
+</span>
+
+</div>
+
+<aside class="notes">
+
+</aside>
+
+
+
+</section>
+<section id="slide_00010_frag_00001" data-state="slide_00010_frag_00001">
+
+
+<!-- Header -->
+  
+
+<!-- Background -->
+
+
+<!-- Slide -->
+<div class="jb-slide">
+<div class="jb-input jb-render jb-code" style="text-align:center">
+
+<!-- start embedded style -->
+
+<!-- end embedded style -->
+<div class="jb-input-code jb-render">
+<div class="highlight" style="background: #f8f8f8; color:#101010;display=inline-block;"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">expand_node</span>(state):
+  wolves_left, chicks_left, boat_left <span style="color: #666666">=</span> state
+  wolves_right, chicks_right <span style="color: #666666">=</span> NUM_ANIMALS <span style="color: #666666">-</span> wolves_left, NUM_ANIMALS <span style="color: #666666">-</span> chicks_left
+  boat_right <span style="color: #666666">=</span> <span style="color: #AA22FF; font-weight: bold">not</span> boat_left
+  move_left <span style="color: #666666">=</span> [[<span style="color: #666666">0</span>, <span style="color: #666666">1</span>], [<span style="color: #666666">1</span>, <span style="color: #666666">0</span>], [<span style="color: #666666">1</span>, <span style="color: #666666">1</span>], [<span style="color: #666666">0</span>, <span style="color: #666666">2</span>], [<span style="color: #666666">2</span>, <span style="color: #666666">0</span>]]
+  move_right <span style="color: #666666">=</span> [[<span style="color: #666666">0</span>, <span style="color: #666666">-1</span>], [<span style="color: #666666">-1</span>, <span style="color: #666666">0</span>], [<span style="color: #666666">-1</span>, <span style="color: #666666">-1</span>], [<span style="color: #666666">0</span>, <span style="color: #666666">-2</span>], [<span style="color: #666666">-2</span>, <span style="color: #666666">0</span>]]
+
+  children <span style="color: #666666">=</span> []
+
+  move <span style="color: #666666">=</span> move_left <span style="color: #008000; font-weight: bold">if</span> boat_left <span style="color: #008000; font-weight: bold">else</span> move_right
+
+  <span style="color: #008000; font-weight: bold">for</span> mw, mc <span style="color: #AA22FF; font-weight: bold">in</span> move:
+    <span style="color: #3D7B7B; font-style: italic">#print(&#39;move&#39;, mw, mc)</span>
+    n_wolves_left <span style="color: #666666">=</span> wolves_left <span style="color: #666666">-</span> mw
+    n_chicks_left <span style="color: #666666">=</span> chicks_left <span style="color: #666666">-</span> mc
+    child <span style="color: #666666">=</span> [n_wolves_left, n_chicks_left, <span style="color: #AA22FF; font-weight: bold">not</span> boat_left]
+    <span style="color: #008000; font-weight: bold">if</span> is_valid(child):
+      children<span style="color: #666666">.</span>append(child)
+  <span style="color: #008000; font-weight: bold">return</span> children
+</pre></div>
+
+</div><!-- end of jb-input-code jb-render -->
+
+</div>
+
+</div>
+<!-- Footer -->
+
+<div class="jb-footer-left plain">
+    <span id="id-d7848f51-503f-4d2a-ba30-e40cef7f111a" ><span id="id-d7848f51-503f-4d2a-ba30-e40cef7f111a"><img id="img-id-d7848f51-503f-4d2a-ba30-e40cef7f111a"     src="assets/images/logo.png"/></span>
+</span>
+
+</div>
+<div class="jb-footer-right plain">
+    <span id="id-b92db051-7c1e-4045-af34-c355198c908b" ><span id="id-b92db051-7c1e-4045-af34-c355198c908b"><img id="img-id-b92db051-7c1e-4045-af34-c355198c908b" width="162" height="138"   src="assets/images/robbi.png"/></span>
+</span>
+
+</div>
+
+<aside class="notes">
+
+</aside>
+
+
+
+</section>
+<section id="slide_00011_frag_00001" data-state="slide_00011_frag_00001">
+
+
+<!-- Header -->
+  
+
+<!-- Background -->
+
+
+<!-- Slide -->
+<div class="jb-slide">
+<div class="jb-input jb-render jb-code" style="text-align:center">
+
+<!-- start embedded style -->
+
+<!-- end embedded style -->
+<div class="jb-input-code jb-render">
+<div class="highlight" style="background: #f8f8f8; color:#101010;display=inline-block;"><pre style="line-height: 125%;"><span></span>NODE_LIMIT <span style="color: #666666">=</span> <span style="color: #666666">2000</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">is_goal</span>(state):
+  res <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">False</span>
+  <span style="color: #008000; font-weight: bold">if</span> ((state[<span style="color: #666666">0</span>] <span style="color: #666666">==</span> <span style="color: #666666">0</span>) <span style="color: #AA22FF; font-weight: bold">and</span> (state[<span style="color: #666666">1</span>] <span style="color: #666666">==</span> <span style="color: #666666">0</span>)):
+    res <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">True</span>
+  <span style="color: #008000; font-weight: bold">return</span> res
+</pre></div>
+
+</div><!-- end of jb-input-code jb-render -->
+
+</div>
+
+</div>
+<!-- Footer -->
+
+<div class="jb-footer-left plain">
+    <span id="id-a39242b9-b91d-490e-a48f-4e2650535ee1" ><span id="id-a39242b9-b91d-490e-a48f-4e2650535ee1"><img id="img-id-a39242b9-b91d-490e-a48f-4e2650535ee1"     src="assets/images/logo.png"/></span>
+</span>
+
+</div>
+<div class="jb-footer-right plain">
+    <span id="id-db7e5307-c35d-4090-bb5b-82d6e777cfc0" ><span id="id-db7e5307-c35d-4090-bb5b-82d6e777cfc0"><img id="img-id-db7e5307-c35d-4090-bb5b-82d6e777cfc0" width="162" height="138"   src="assets/images/robbi.png"/></span>
+</span>
+
+</div>
+
+<aside class="notes">
+
+</aside>
+
+
+
+</section>
+<section id="slide_00012_frag_00001" data-state="slide_00012_frag_00001">
+
+
+<!-- Header -->
+  
+
+<!-- Background -->
+
+
+<!-- Slide -->
+<div class="jb-slide">
+<div class="jb-input jb-render jb-code" style="text-align:center">
+
+<!-- start embedded style -->
+
+<!-- end embedded style -->
+<div class="jb-input-code jb-render">
+<div class="highlight" style="background: #f8f8f8; color:#101010;display=inline-block;"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">search</span>(dfs<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">True</span>):
+  initial_state <span style="color: #666666">=</span> [NUM_ANIMALS, NUM_ANIMALS, <span style="color: #008000; font-weight: bold">True</span>]
+  queue <span style="color: #666666">=</span> [[initial_state, []]]
+  count <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+  max_len_queue <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+
+  sol <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">None</span>
+
+  <span style="color: #008000; font-weight: bold">while</span> (<span style="color: #008000">len</span>(queue) <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>):
+    <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">len</span>(queue) <span style="color: #666666">&gt;</span> max_len_queue):
+      max_len_queue <span style="color: #666666">=</span> <span style="color: #008000">len</span>(queue)
+    current_state, current_hist <span style="color: #666666">=</span> queue<span style="color: #666666">.</span>pop()
+    <span style="color: #3D7B7B; font-style: italic">#print(&#39;current&#39;, current_state, current_hist)</span>
+    <span style="color: #008000; font-weight: bold">if</span> (is_goal(current_state)):
+      sol <span style="color: #666666">=</span> current_hist <span style="color: #666666">+</span> [current_state]
+    children <span style="color: #666666">=</span> expand_node(current_state)
+    <span style="color: #008000; font-weight: bold">for</span> child <span style="color: #AA22FF; font-weight: bold">in</span> children:
+      <span style="color: #008000; font-weight: bold">if</span> (child <span style="color: #AA22FF; font-weight: bold">not</span> <span style="color: #AA22FF; font-weight: bold">in</span> current_hist):
+        <span style="color: #008000; font-weight: bold">if</span> (dfs):
+          ins <span style="color: #666666">=</span> <span style="color: #008000">len</span>(queue)
+        <span style="color: #008000; font-weight: bold">else</span>:
+          ins <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+        queue<span style="color: #666666">.</span>insert(ins, [child, current_hist <span style="color: #666666">+</span> [current_state]])
+
+    count <span style="color: #666666">=</span> count <span style="color: #666666">+</span> <span style="color: #666666">1</span>
+    <span style="color: #008000; font-weight: bold">if</span> (count <span style="color: #666666">&gt;</span> NODE_LIMIT):
+      <span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;Too many nodes&quot;</span>)
+      <span style="color: #008000; font-weight: bold">break</span>
+
+  <span style="color: #008000; font-weight: bold">return</span> sol, count, max_len_queue
+
+
+sol, count, memory <span style="color: #666666">=</span> search(dfs<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">True</span>)
+<span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;Solution (DFS)&quot;</span>, <span style="color: #008000">len</span>(sol))
+<span style="color: #008000; font-weight: bold">for</span> i, s <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">enumerate</span>(sol):
+  <span style="color: #008000">print</span>(i <span style="color: #666666">+</span> <span style="color: #666666">1</span>, s)
+<span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;Number of Nodes&quot;</span>, count, <span style="color: #BA2121">&quot;Max. Queue Length&quot;</span>, memory)
+
+sol, count, memory <span style="color: #666666">=</span> search(dfs<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">False</span>)
+<span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;Solution (BFS)&quot;</span>, <span style="color: #008000">len</span>(sol))
+<span style="color: #008000; font-weight: bold">for</span> i, s <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">enumerate</span>(sol):
+  <span style="color: #008000">print</span>(i <span style="color: #666666">+</span> <span style="color: #666666">1</span>, s)
+<span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;Number of Nodes&quot;</span>, count, <span style="color: #BA2121">&quot;Max. Queue Length&quot;</span>, memory)
+</pre></div>
+
+</div><!-- end of jb-input-code jb-render -->
+
+</div>
+<div class="jb-print jb-render">
+<div class="jb-output jb-render code" style="text-align:center">
+<div class="jb-stdout code" style="display:inline-block; width:90%">
+<pre >
+Solution (DFS) 12
+1 [3, 3, True]
+2 [2, 2, False]
+3 [2, 3, True]
+4 [0, 3, False]
+5 [1, 3, True]
+6 [1, 1, False]
+7 [2, 2, True]
+8 [2, 0, False]
+9 [3, 0, True]
+10 [1, 0, False]
+11 [1, 1, True]
+12 [0, 0, False]
+Number of Nodes 38 Max. Queue Length 6
+Solution (BFS) 12
+1 [3, 3, True]
+2 [1, 3, False]
+3 [2, 3, True]
+4 [0, 3, False]
+5 [1, 3, True]
+6 [1, 1, False]
+7 [2, 2, True]
+8 [2, 0, False]
+9 [3, 0, True]
+10 [1, 0, False]
+11 [2, 0, True]
+12 [0, 0, False]
+Number of Nodes 38 Max. Queue Length 8
+</pre>
+</div>
+</div>
+
+</div><!-- end of jb-print jb-render -->
+
+</div>
+<!-- Footer -->
+
+<div class="jb-footer-left plain">
+    <span id="id-c2fa7ef5-e57d-44fd-8fc8-45d81617c6da" ><span id="id-c2fa7ef5-e57d-44fd-8fc8-45d81617c6da"><img id="img-id-c2fa7ef5-e57d-44fd-8fc8-45d81617c6da"     src="assets/images/logo.png"/></span>
+</span>
+
+</div>
+<div class="jb-footer-right plain">
+    <span id="id-d1ec0989-e19c-4d3e-9044-9bdcc398a2b7" ><span id="id-d1ec0989-e19c-4d3e-9044-9bdcc398a2b7"><img id="img-id-d1ec0989-e19c-4d3e-9044-9bdcc398a2b7" width="162" height="138"   src="assets/images/robbi.png"/></span>
+</span>
+
+</div>
+
+<aside class="notes">
+
+</aside>
+
+
+
+</section>
+        </div>
+        </div>
+
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                math: {
+                    mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+                    config: 'TeX-AMS_HTML-full',  // See http://docs.mathjax.org/en/latest/config-files.html
+                    // tex2jax: {
+                    //     inlineMath: [['$', '$'], ['\(', '\)']],
+                    //     displayMath: [['$$', '$$'], ['\[', '\]']],
+                    //     processEscapes: true,
+                    //     processEnvironments: true,
+                    //     skipTags: ['script', 'noscript', 'style', 'textarea', 'code', 'pre'],
+                    //     displayAlign: 'center',
+                    // }                
+                },
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/math/math.js', async: true }
+                ]
+            });
+        </script>
+
+        <script>
+            <!-- Assets -->
+var assets = {
+"robbi" : new JBImage( "robbi", "12677", "162", "138", null, null, "assets/images/robbi", "png" ),
+"logo" : new JBImage( "logo", "12033", "0", "0", null, null, "assets/images/logo", "png" ),
+"fira-logo-1" : new JBImage( "fira-logo-1", "93836", "0", "0", null, null, "assets/images/FIRA-logo-1", "png" ),
+"pairLogo" : new JBImage( "pairLogo", "63051", "0", "0", null, null, "assets/images/pairLogo", "png" ) 
+};
+var assetInstances = {
+    "id-97deabab-7d74-4096-b0c6-f34025cb1bde": assets["robbi"],
+    "id-0e994ff1-504d-4d05-b469-8226d769fcb7": assets["robbi"],
+    "id-d2e1eb47-e61d-4b18-92ec-a22dd8571b4d": assets["robbi"],
+    "id-c92484ac-0f37-4737-b769-cbc77c76624e": assets["robbi"],
+    "id-7faa7e71-d345-42c4-8139-aa071e97d187": assets["robbi"],
+    "id-6403981f-e5c2-4779-8599-13bf9c237044": assets["robbi"],
+    "id-7fd106e2-3617-4d2a-a733-f1a44bc5514f": assets["robbi"],
+    "id-3f634c60-0c94-42ee-a235-79bfc473f293": assets["robbi"],
+    "id-b92db051-7c1e-4045-af34-c355198c908b": assets["robbi"],
+    "id-db7e5307-c35d-4090-bb5b-82d6e777cfc0": assets["robbi"],
+    "id-d1ec0989-e19c-4d3e-9044-9bdcc398a2b7": assets["robbi"],
+    "id-4d1e24f0-7ff2-48e6-ae52-7a6e6097cee1": assets["logo"],
+    "id-c2425699-4373-40b9-8bc0-dd4296e4124b": assets["logo"],
+    "id-ce3927f0-efae-474f-8dc6-a977a3b08037": assets["logo"],
+    "id-7cac6af4-e0df-4892-ae7c-0ccbbf9aeb53": assets["logo"],
+    "id-0e0ecdb2-ce2a-4610-bcb2-8c65c38e6d85": assets["logo"],
+    "id-86fca95a-5c04-4f79-aad7-5d4f92cdf15a": assets["logo"],
+    "id-5cd329fc-5836-41f2-965d-0e0005a05b58": assets["logo"],
+    "id-e581d8fd-ff68-496a-bbac-fd2c58928a41": assets["logo"],
+    "id-d7848f51-503f-4d2a-ba30-e40cef7f111a": assets["logo"],
+    "id-a39242b9-b91d-490e-a48f-4e2650535ee1": assets["logo"],
+    "id-c2fa7ef5-e57d-44fd-8fc8-45d81617c6da": assets["logo"]
+};
+<!-- End of Assets -->
+
+            convertURLs(assetInstances, "smart-path");
+        </script>
+        <script>
+            <!-- Characters -->
+var characters =
+{};
+<!-- End of Characters -->
+
+        </script>
+    </body>
+</html>
